@@ -1,21 +1,27 @@
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const NavBar = () => {
+  const { t } = useTranslation();
   return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="news">News</NavLink>
-      </li>
-      <li>
-        <NavLink to="login">LogIn</NavLink>
-      </li>
-      <li>
-        <NavLink to="profile">Profile</NavLink>
-      </li>
-    </ul>
+    <>
+      <ul>
+        <li>
+          <NavLink to="/">{t('home')}</NavLink>
+        </li>
+        <li>
+          <NavLink to="news">{t('news')}</NavLink>
+        </li>
+        <li>
+          <NavLink to="login">{t('login')}</NavLink>
+        </li>
+        <li>
+          <NavLink to="profile">{t('profile')}</NavLink>
+        </li>
+      </ul>
+      <LanguageSwitcher />
+    </>
   );
 };
 

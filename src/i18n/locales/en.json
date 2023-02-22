@@ -1,0 +1,12 @@
+{
+  "home": "Home",
+  "news": "News",
+  "profile": "Profile",
+  "login": "Login",
+  "logout": "Logout",
+  "loadMore": "Load more",
+  "username": "Username",
+  "password": "Password",
+  "submit": "Submit",
+  "error": "Incorrect username or password."
+}
