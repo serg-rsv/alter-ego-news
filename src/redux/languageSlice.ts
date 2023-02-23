@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import i18n from '../i18n/i18n';
 import { RootState } from './store';
 
-export type Language = 'en' | 'ua';
+export type Language = 'en' | 'uk';
 
 export interface ILanguageState {
   language: Language;

@@ -30,7 +30,7 @@ const LanguageSwitcher = () => {
         aria-haspopup="true"
         onClick={handleLanguageClick}
       >
-        {language === 'en' ? 'EN' : 'UA'}
+        {language === 'en' ? 'EN' : 'UK'}
       </Button>
       <Menu
         id="language-menu"
@@ -40,7 +40,7 @@ const LanguageSwitcher = () => {
         onClose={handleLanguageClose}
       >
         <MenuItem onClick={() => handleLanguageChange('en')}>EN</MenuItem>
-        <MenuItem onClick={() => handleLanguageChange('ua')}>UA</MenuItem>
+        <MenuItem onClick={() => handleLanguageChange('uk')}>UK</MenuItem>
       </Menu>
     </div>
   );
