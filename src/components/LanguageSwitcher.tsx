@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Button, Menu, MenuItem } from '@mui/material';
 
+import { useAppDispatch } from '../redux/store';
+import { selectLanguage, setLanguage, Language } from '../redux/languageSlice';
+
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const dispatch = useAppDispatch();
+  const language = useSelector(selectLanguage);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
 
   const handleLanguageClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -14,8 +18,8 @@ const LanguageSwitcher = () => {
     setAnchorEl(null);
   };
 
-  const handleLanguageChange = (language: string) => {
-    i18n.changeLanguage(language);
+  const handleLanguageChange = (language: Language) => {
+    dispatch(setLanguage(language));
     handleLanguageClose();
   };
 
@@ -26,7 +30,7 @@ const LanguageSwitcher = () => {
         aria-haspopup="true"
         onClick={handleLanguageClick}
       >
-        {i18n.language === 'en' ? 'EN' : 'UA'}
+        {language === 'en' ? 'EN' : 'UA'}
       </Button>
       <Menu
         id="language-menu"

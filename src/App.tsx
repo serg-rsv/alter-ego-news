@@ -1,12 +1,15 @@
-import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
+import { useInitLanguage } from './hooks/useInitLanguage';
 import AppView from './layouts/AppView';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import NewsPage from './pages/NewsPage';
 import ProfilePage from './pages/ProfilePage';
 
-function App() {
+const App = () => {
+  useInitLanguage();
+
   return (
     <Routes>
       <Route path="/" element={<AppView />}>
@@ -18,6 +21,6 @@ function App() {
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
-}
+};
 
 export default App;

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 import LanguageSwitcher from './LanguageSwitcher';
 
 const NavBar = () => {
