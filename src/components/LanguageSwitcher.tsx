@@ -28,6 +28,7 @@ const LanguageSwitcher = () => {
       <Button
         aria-controls="language-menu"
         aria-haspopup="true"
+        sx={{ color: 'inherit' }}
         onClick={handleLanguageClick}
       >
         {language === 'en' ? 'EN' : 'UK'}
