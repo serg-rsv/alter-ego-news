@@ -2,12 +2,12 @@ import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-interface NewsArticle {
+export interface NewsArticle {
   title: string;
-  description: string;
-  content: string;
+  description: string | null;
+  content: string | null;
   url: string;
-  urlToImage: string;
+  urlToImage: string | null;
   publishedAt: string;
 }
 
