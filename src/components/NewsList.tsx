@@ -6,16 +6,20 @@ import { NewsArticle } from '../services/newsService';
 interface NewsListProps {
   articles: NewsArticle[];
   loading: boolean;
+  handleDeleteNews: Function;
 }
 
-const NewsList = ({ articles, loading }: NewsListProps) => {
+const NewsList = ({ articles, loading, handleDeleteNews }: NewsListProps) => {
   return (
     <>
       {articles.length > 0 && (
         <Grid container spacing={2}>
           {articles.map((article) => (
             <Grid key={article.url} item xs={12} md={6} lg={3}>
-              <NewsListItem article={article} />
+              <NewsListItem
+                article={article}
+                handleDeleteNews={handleDeleteNews}
+              />
             </Grid>
           ))}
         </Grid>

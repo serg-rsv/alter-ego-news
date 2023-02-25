@@ -1,20 +1,29 @@
 import {
   Card,
+  CardActions,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography,
+  IconButton,
 } from '@mui/material';
+import { Delete } from '@mui/icons-material/';
 
 import { NewsArticle } from '../services/newsService';
 import placeHolderImg from '../assets/img/news-default-image.png';
 
 interface NewsListItemProps {
   article: NewsArticle;
+  handleDeleteNews: Function;
 }
 
-const NewsListItem = ({ article }: NewsListItemProps) => {
+const NewsListItem = ({ article, handleDeleteNews }: NewsListItemProps) => {
   const { title, description, url, urlToImage } = article;
+
+  const handleDeleteClick = () => {
+    handleDeleteNews(article);
+  };
+
   return (
     <Card
       sx={{
@@ -40,6 +49,15 @@ const NewsListItem = ({ article }: NewsListItemProps) => {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <CardActions>
+        <IconButton
+          aria-label="delete"
+          onClick={handleDeleteClick}
+          sx={{ ml: 'auto' }}
+        >
+          <Delete />
+        </IconButton>
+      </CardActions>
     </Card>
   );
 };

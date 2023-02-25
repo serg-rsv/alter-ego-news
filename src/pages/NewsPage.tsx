@@ -10,6 +10,7 @@ import getNews, { NewsArticle } from '../services/newsService';
 const NewsPage = () => {
   const { t } = useTranslation();
   const language = useSelector(selectLanguage);
+  const [prevLang, setPrevLang] = useState('');
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [totalResults, setTotalResults] = useState<number>(0);
   const [loading, setLoading] = useState(false);
@@ -17,6 +18,13 @@ const NewsPage = () => {
 
   const handleLoadMore = () => {
     setPage(page + 1);
+  };
+
+  const handleDeleteNews = (newsToDelete: NewsArticle) => {
+    const updatedNews = articles.filter(
+      (newsItem) => newsItem.url !== newsToDelete.url
+    );
+    setArticles(updatedNews);
   };
 
   useEffect(() => {
@@ -27,25 +35,37 @@ const NewsPage = () => {
         category: 'technology',
         page,
       });
-      setArticles((prevState) => [...prevState, ...response.articles]);
+      if (language === prevLang) {
+        setArticles((prevState) => [...prevState, ...response.articles]);
+      } else {
+        setArticles([...response.articles]);
+        setPrevLang(language);
+      }
       setTotalResults(response.totalResults);
       setLoading(false);
     };
     fetchNews();
-  }, [language, page]);
+  }, [page, language]);
 
   return (
-    <Container sx={{ alignContent: 'center' }}>
+    <Container
+      sx={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}
+    >
       <Typography variant="h4" component="h1" gutterBottom>
         Latest Technology News
       </Typography>
-      <NewsList articles={articles} loading={loading} />
+      <NewsList
+        articles={articles}
+        loading={loading}
+        handleDeleteNews={handleDeleteNews}
+      />
       {articles.length < totalResults && (
         <Button
           variant="contained"
           color="primary"
           onClick={handleLoadMore}
           disabled={loading}
+          sx={{ ml: 'auto', mr: 'auto', mt: '2rem' }}
         >
           {t('loadMore')}
         </Button>
