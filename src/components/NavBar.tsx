@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   AppBar,
   Toolbar,
@@ -16,25 +17,32 @@ import { styled, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 import LanguageSwitcher from './LanguageSwitcher';
+import AuthModal from './AuthModal';
+import { selectIsLoggedIn } from '../redux/authSlice';
 
 interface NavItem {
   label: string;
   to: string;
+  private: boolean;
 }
 
 const navItems: NavItem[] = [
   {
     label: 'home',
     to: '/',
+    private: false,
   },
   {
     label: 'news',
     to: 'news',
+    private: false,
   },
   {
     label: 'profile',
     to: 'profile',
+    private: true,
   },
 ];
 
@@ -68,10 +76,16 @@ const Link = styled(NavLink)(({ theme }) => ({
 }));
 
 const NavBar = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const { t } = useTranslation();
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up('md'));
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const handleAuthModalOpen = () => {
+    setIsAuthModalOpen(true);
+  };
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -90,16 +104,25 @@ const NavBar = () => {
         AE News
       </Typography>
       <List sx={{ display: 'flex', gap: 2 }}>
-        {navItems.map((navItem) => (
-          <ListItem key={navItem.to}>
-            <Link to={navItem.to}>
-              <Typography color="inherit">{t(navItem.label)}</Typography>
-            </Link>
-          </ListItem>
-        ))}
+        {navItems.map((navItem) => {
+          if (!navItem.private || isLoggedIn) {
+            return (
+              <ListItem key={navItem.to}>
+                <Link to={navItem.to}>
+                  <Typography color="inherit">{t(navItem.label)}</Typography>
+                </Link>
+              </ListItem>
+            );
+          }
+          return null;
+        })}
       </List>
       <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-        <Button color="inherit">{t('login')}</Button>
+        {!isLoggedIn && (
+          <Button onClick={handleAuthModalOpen} color="inherit">
+            {t('login')}
+          </Button>
+        )}
         <LanguageSwitcher />
       </Box>
     </Toolbar>
@@ -131,7 +154,11 @@ const NavBar = () => {
         AE News
       </Typography>
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <Button color="inherit">{t('login')}</Button>
+        {!isLoggedIn && (
+          <Button onClick={handleAuthModalOpen} color="inherit">
+            {t('login')}
+          </Button>
+        )}
         <LanguageSwitcher />
       </Box>
       <Drawer
@@ -146,13 +173,18 @@ const NavBar = () => {
         onClose={handleDrawerToggle}
       >
         <List>
-          {navItems.map((navItem) => (
-            <ListItem key={navItem.to} button onClick={handleDrawerToggle}>
-              <Link to={navItem.to}>
-                <ListItemText primary={t(navItem.label)} />
-              </Link>
-            </ListItem>
-          ))}
+          {navItems.map((navItem) => {
+            if (!navItem.private || isLoggedIn) {
+              return (
+                <ListItem key={navItem.to}>
+                  <Link to={navItem.to}>
+                    <Typography color="inherit">{t(navItem.label)}</Typography>
+                  </Link>
+                </ListItem>
+              );
+            }
+            return null;
+          })}
         </List>
       </Drawer>
     </Toolbar>
@@ -161,6 +193,10 @@ const NavBar = () => {
   return (
     <AppBar position="fixed">
       {isTablet ? renderTabletNav() : renderMobileNav()}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </AppBar>
   );
 };
