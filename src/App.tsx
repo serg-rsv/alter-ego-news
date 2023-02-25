@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -7,11 +6,9 @@ import AppView from './layouts/AppView';
 import HomePage from './pages/HomePage';
 import NewsPage from './pages/NewsPage';
 import ProfilePage from './pages/ProfilePage';
-import { selectIsLoggedIn } from './redux/authSlice';
 
 const App = () => {
   useInitLanguage();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <Routes>
@@ -20,7 +17,7 @@ const App = () => {
         <Route path="news" element={<NewsPage />} />
         <Route
           path="profile"
-          element={isLoggedIn ? <ProfilePage /> : <Navigate to="/" />}
+          element={<PrivateRoute element={<ProfilePage />} />}
         />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />

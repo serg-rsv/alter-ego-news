@@ -8,7 +8,6 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText,
   Button,
   Box,
   useMediaQuery,
