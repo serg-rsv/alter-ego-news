@@ -18,10 +18,11 @@ const NewsListItem = ({ article }: NewsListItemProps) => {
   return (
     <Card
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        height: '100%',
+        maxWidth: 760,
+        // display: 'flex',
+        // flexDirection: 'column',
+        // justifyContent: 'space-between',
+        // height: '100%',
       }}
     >
       <CardActionArea href={url} target="_blank" rel="noopener noreferrer">

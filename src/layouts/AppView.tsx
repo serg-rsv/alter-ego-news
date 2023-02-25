@@ -9,7 +9,7 @@ const AppView = () => {
     <>
       <NavBar />
       <Container
-        maxWidth="md"
+        maxWidth="lg"
         sx={{
           display: 'flex',
           flexDirection: 'column',

@@ -1,37 +1,55 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectLanguage } from '../redux/languageSlice';
-import { Container, Grid, Typography } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
+import { selectLanguage } from '../redux/languageSlice';
 import NewsList from '../components/NewsList';
 import getNews, { NewsArticle } from '../services/newsService';
 
 const NewsPage = () => {
+  const { t } = useTranslation();
   const language = useSelector(selectLanguage);
   const [articles, setArticles] = useState<NewsArticle[]>([]);
+  const [totalResults, setTotalResults] = useState<number>(0);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+
+  const handleLoadMore = () => {
+    setPage(page + 1);
+  };
 
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
-      const fetchedArticles = await getNews({
+      const response = await getNews({
         language,
         category: 'technology',
+        page,
       });
-      setArticles(fetchedArticles);
+      setArticles((prevState) => [...prevState, ...response.articles]);
+      setTotalResults(response.totalResults);
       setLoading(false);
     };
     fetchNews();
-  }, [language]);
+  }, [language, page]);
 
   return (
-    <Container>
+    <Container sx={{ alignContent: 'center' }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Latest Technology News
       </Typography>
-      <Grid container spacing={2}>
-        <NewsList articles={articles} loading={loading} />
-      </Grid>
+      <NewsList articles={articles} loading={loading} />
+      {articles.length < totalResults && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleLoadMore}
+          disabled={loading}
+        >
+          {t('loadMore')}
+        </Button>
+      )}
     </Container>
   );
 };

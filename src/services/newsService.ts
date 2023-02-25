@@ -13,6 +13,7 @@ export interface NewsArticle {
 
 interface NewsApiResponse {
   articles: NewsArticle[];
+  totalResults: number;
 }
 
 interface NewsApiParams {
@@ -22,7 +23,7 @@ interface NewsApiParams {
   pageSize?: number;
 }
 
-const getNews = async (params: NewsApiParams): Promise<NewsArticle[]> => {
+const getNews = async (params: NewsApiParams): Promise<NewsApiResponse> => {
   const { language, category = 'technology', page = 1, pageSize = 8 } = params;
   const url = `https://newsapi.org/v2/top-headlines?pageSize=${pageSize}&page=${page}&category=${category}&language=${language}`;
   const response = await axios.get<NewsApiResponse>(url, {
@@ -31,7 +32,7 @@ const getNews = async (params: NewsApiParams): Promise<NewsArticle[]> => {
     },
   });
 
-  return response.data.articles;
+  return response.data;
 };
 
 export default getNews;
