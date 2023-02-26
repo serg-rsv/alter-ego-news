@@ -8,13 +8,14 @@ import NewsList from '../components/NewsList';
 import getNews, { NewsArticle } from '../services/newsService';
 
 const NewsPage = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'content']);
   const language = useSelector(selectLanguage);
   const [prevLanguage, setPrevLanguage] = useState(language);
   const [articles, setArticles] = useState<NewsArticle[]>([]);
-  const [totalResults, setTotalResults] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [pageSize] = useState(8);
+  const [hasMore, setHasMore] = useState(false);
 
   const handleLoadMore = () => {
     setPage(page + 1);
@@ -36,9 +37,10 @@ const NewsPage = () => {
           language,
           category: 'technology',
           page,
+          pageSize,
         });
         setArticles((prevState) => [...prevState, ...response.articles]);
-        setTotalResults(response.totalResults);
+        setHasMore(response.totalResults / pageSize > page);
       } else {
         setArticles([]);
         setPrevLanguage(language);
@@ -46,21 +48,21 @@ const NewsPage = () => {
       setLoading(false);
     };
     fetchNews();
-  }, [page, language, prevLanguage]);
+  }, [page, language, prevLanguage, pageSize]);
 
   return (
     <Container
       sx={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}
     >
       <Typography variant="h4" component="h1" gutterBottom>
-        Latest Technology News
+        {t('content:latestTechNews')}
       </Typography>
       <NewsList
         articles={articles}
         loading={loading}
         handleDeleteNews={handleDeleteNews}
       />
-      {articles.length < totalResults && (
+      {hasMore && (
         <Button
           variant="contained"
           color="primary"
