@@ -21,6 +21,7 @@ const AppView = () => {
         <Box
           sx={{
             flexGrow: 1,
+            width: '100%',
             padding: '24px',
             paddingTop: '64px',
             backgroundColor: '#fff',

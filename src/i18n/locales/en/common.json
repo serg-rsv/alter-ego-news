@@ -1,14 +1,11 @@
 {
-  "home": "Home",
-  "news": "News",
-  "profile": "Profile",
   "login": "Login",
   "logout": "Logout",
   "loadMore": "Load more",
   "username": "Username",
   "password": "Password",
-  "enterCredential":"Please enter your credentials",
+  "enterCredential": "Please enter your credentials",
   "submit": "Submit",
-  "cancel":"Cancel",
+  "cancel": "Cancel",
   "error": "Incorrect username or password."
 }

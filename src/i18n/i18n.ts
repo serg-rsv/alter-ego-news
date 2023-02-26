@@ -1,22 +1,31 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import en from './locales/en.json';
-import uk from './locales/uk.json';
+import { getInitialLanguage } from '../utils/getInitialLanguage';
+import commonEn from './locales/en/common.json';
+import navigationEn from './locales/en/navigation.json';
+import contentEn from './locales/en/content.json';
+import commonUk from './locales/uk/common.json';
+import navigationUk from './locales/uk/navigation.json';
+import contentUk from './locales/uk/content.json';
 
 const resources = {
   en: {
-    translation: en,
+    common: commonEn,
+    navigation: navigationEn,
+    content: contentEn,
   },
   uk: {
-    translation: uk,
+    common: commonUk,
+    navigation: navigationUk,
+    content: contentUk,
   },
 };
 
 i18n.use(initReactI18next).init({
   debug: true,
   resources,
-  lng: 'en',
+  lng: getInitialLanguage(),
   fallbackLng: 'en',
 
   interpolation: {

@@ -20,7 +20,7 @@ interface Props {
 }
 
 const AuthModal = ({ isOpen, onClose }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -41,20 +41,20 @@ const AuthModal = ({ isOpen, onClose }: Props) => {
       navigate('profile');
       onClose();
     } else {
-      setErrorMessage(`${t('error')}`);
+      setErrorMessage(`${t('common:error')}`);
     }
   };
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <DialogTitle>{t('login')}</DialogTitle>
+      <DialogTitle>{t('common:login')}</DialogTitle>
       <DialogContent>
-        <DialogContentText>{t('enterCredential')}</DialogContentText>
+        <DialogContentText>{t('common:enterCredential')}</DialogContentText>
         <TextField
           autoFocus
           margin="dense"
           id="username"
-          label={t('username')}
+          label={t('common:username')}
           type="text"
           fullWidth
           value={username}
@@ -63,7 +63,7 @@ const AuthModal = ({ isOpen, onClose }: Props) => {
         <TextField
           margin="dense"
           id="password"
-          label={t('password')}
+          label={t('common:password')}
           type="password"
           fullWidth
           value={password}
@@ -76,8 +76,8 @@ const AuthModal = ({ isOpen, onClose }: Props) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>{t('cancel')}</Button>
-        <Button onClick={handleLoginClick}>{t('submit')}</Button>
+        <Button onClick={onClose}>{t('common:cancel')}</Button>
+        <Button onClick={handleLoginClick}>{t('common:submit')}</Button>
       </DialogActions>
     </Dialog>
   );

@@ -3,11 +3,11 @@ import { combineReducers } from 'redux';
 import { useDispatch } from 'react-redux';
 
 import authSlice, { AuthState } from './authSlice';
-import languageSlice, { ILanguageState } from './languageSlice';
+import languageSlice, { LanguageState } from './languageSlice';
 
 export interface RootState {
   auth: AuthState;
-  language: ILanguageState;
+  language: LanguageState;
 }
 
 const rootReducer = combineReducers({

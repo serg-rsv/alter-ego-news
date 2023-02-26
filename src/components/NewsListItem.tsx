@@ -28,10 +28,10 @@ const NewsListItem = ({ article, handleDeleteNews }: NewsListItemProps) => {
     <Card
       sx={{
         maxWidth: 760,
-        // display: 'flex',
-        // flexDirection: 'column',
-        // justifyContent: 'space-between',
-        // height: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}
     >
       <CardActionArea href={url} target="_blank" rel="noopener noreferrer">

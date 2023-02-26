@@ -2,15 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import i18n from '../i18n/i18n';
 import { RootState } from './store';
+import { SET_LANGUAGES,getInitialLanguage } from '../utils/getInitialLanguage';
 
-export type Language = 'en' | 'uk';
+export type Language = typeof SET_LANGUAGES[number];
 
-export interface ILanguageState {
+export interface LanguageState {
   language: Language;
 }
 
-const initialState: ILanguageState = {
-  language: 'en',
+const initialState: LanguageState = {
+  language: getInitialLanguage(),
 };
 
 const languageSlice = createSlice({

@@ -8,9 +8,9 @@ import NewsList from '../components/NewsList';
 import getNews, { NewsArticle } from '../services/newsService';
 
 const NewsPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const language = useSelector(selectLanguage);
-  const [prevLang, setPrevLang] = useState('');
+  const [prevLanguage, setPrevLanguage] = useState(language);
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [totalResults, setTotalResults] = useState<number>(0);
   const [loading, setLoading] = useState(false);
@@ -30,22 +30,23 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
-      const response = await getNews({
-        language,
-        category: 'technology',
-        page,
-      });
-      if (language === prevLang) {
+      let response: any;
+      if (language === prevLanguage) {
+        response = await getNews({
+          language,
+          category: 'technology',
+          page,
+        });
         setArticles((prevState) => [...prevState, ...response.articles]);
+        setTotalResults(response.totalResults);
       } else {
-        setArticles([...response.articles]);
-        setPrevLang(language);
+        setArticles([]);
+        setPrevLanguage(language);
       }
-      setTotalResults(response.totalResults);
       setLoading(false);
     };
     fetchNews();
-  }, [page, language]);
+  }, [page, language, prevLanguage]);
 
   return (
     <Container
@@ -67,7 +68,7 @@ const NewsPage = () => {
           disabled={loading}
           sx={{ ml: 'auto', mr: 'auto', mt: '2rem' }}
         >
-          {t('loadMore')}
+          {t('common:loadMore')}
         </Button>
       )}
     </Container>

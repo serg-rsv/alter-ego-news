@@ -76,7 +76,7 @@ const Link = styled(NavLink)(({ theme }) => ({
 
 const NavBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'navigation']);
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up('md'));
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -108,7 +108,9 @@ const NavBar = () => {
             return (
               <ListItem key={navItem.to}>
                 <Link to={navItem.to}>
-                  <Typography color="inherit">{t(navItem.label)}</Typography>
+                  <Typography color="inherit">
+                    {t(`navigation:${navItem.label}`)}
+                  </Typography>
                 </Link>
               </ListItem>
             );
@@ -119,7 +121,7 @@ const NavBar = () => {
       <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
         {!isLoggedIn && (
           <Button onClick={handleAuthModalOpen} color="inherit">
-            {t('login')}
+            {t('common:login')}
           </Button>
         )}
         <LanguageSwitcher />
@@ -155,7 +157,7 @@ const NavBar = () => {
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         {!isLoggedIn && (
           <Button onClick={handleAuthModalOpen} color="inherit">
-            {t('login')}
+            {t('common:login')}
           </Button>
         )}
         <LanguageSwitcher />
@@ -177,7 +179,9 @@ const NavBar = () => {
               return (
                 <ListItem key={navItem.to}>
                   <Link to={navItem.to}>
-                    <Typography color="inherit">{t(navItem.label)}</Typography>
+                    <Typography color="inherit">
+                      {t(`navigation:${navItem.label}`)}
+                    </Typography>
                   </Link>
                 </ListItem>
               );
