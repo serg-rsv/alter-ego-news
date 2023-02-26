@@ -35,13 +35,16 @@ const theme = createTheme({
         root: {
           justifyContent: 'space-between',
           alignItems: 'center',
-          '@media (min-width: 1280px)': {
-            paddingLeft: '80px',
-            paddingRight: '80px',
-          },
           '@media (max-width: 760px)': {
             paddingLeft: '20px',
             paddingRight: '20px',
+          },
+          '@media (min-width: 1280px)': {
+            width: '1280px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            paddingLeft: '80px',
+            paddingRight: '80px',
           },
         },
       },
@@ -50,7 +53,7 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 480,
+      sm: 320,
       md: 760,
       lg: 1280,
       xl: 1980,

@@ -13,7 +13,7 @@ const AppView = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          // justifyContent: 'center',
           alignItems: 'center',
           minHeight: '100vh',
         }}

@@ -27,7 +27,6 @@ const NewsListItem = ({ article, handleDeleteNews }: NewsListItemProps) => {
   return (
     <Card
       sx={{
-        maxWidth: 760,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
