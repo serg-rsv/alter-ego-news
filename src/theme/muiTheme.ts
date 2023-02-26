@@ -35,16 +35,14 @@ const theme = createTheme({
         root: {
           justifyContent: 'space-between',
           alignItems: 'center',
+          '@media (min-width: 1280px)': {
+            width: '1232px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          },
           '@media (max-width: 760px)': {
             paddingLeft: '20px',
             paddingRight: '20px',
-          },
-          '@media (min-width: 1280px)': {
-            width: '1280px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            paddingLeft: '80px',
-            paddingRight: '80px',
           },
         },
       },
