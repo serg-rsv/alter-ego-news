@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/alter-ego-news">
       <I18nextProvider i18n={i18n}>
         <ThemeProvider theme={theme}>
           <App />

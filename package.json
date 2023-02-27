@@ -2,6 +2,7 @@
   "name": "alter-ego-news",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://serg-rsv.github.io/alter-ego-news/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+import { decrypt } from '../utils/decrypt';
+
+// const API_KEY = process.env.REACT_APP_API_KEY as string;
+const API_KEY = decrypt();
 
 export interface NewsArticle {
   title: string;
