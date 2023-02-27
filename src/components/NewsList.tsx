@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Grid } from '@mui/material';
 
 import NewsListItem from './NewsListItem';
-import { NewsArticle } from '../services/newsService';
+import { NewsArticle } from '../services/mokapiService';
 
 interface NewsListProps {
   articles: NewsArticle[];

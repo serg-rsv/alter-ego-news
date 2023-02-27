@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { selectLanguage } from '../redux/languageSlice';
 import NewsList from '../components/NewsList';
-import getNews, { NewsArticle } from '../services/newsService';
+import getNews, { NewsArticle } from '../services/mokapiService';
 
 const NewsPage = () => {
   const { t } = useTranslation(['common', 'content']);
@@ -14,7 +14,7 @@ const NewsPage = () => {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(8);
+  const [limit] = useState(8);
   const [hasMore, setHasMore] = useState(false);
 
   const handleLoadMore = () => {
@@ -31,24 +31,24 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
-      let response: any;
+      let response: NewsArticle[];
       if (language === prevLanguage) {
         response = await getNews({
           language,
-          category: 'technology',
           page,
-          pageSize,
+          limit,
         });
-        setArticles((prevState) => [...prevState, ...response.articles]);
-        setHasMore(response.totalResults / pageSize > page);
+        setArticles((prevState) => [...prevState, ...response]);
+        setHasMore(!(response.length < limit));
       } else {
         setArticles([]);
+        setPage(1);
         setPrevLanguage(language);
       }
       setLoading(false);
     };
     fetchNews();
-  }, [page, language, prevLanguage, pageSize]);
+  }, [page, language, prevLanguage, limit]);
 
   return (
     <Container

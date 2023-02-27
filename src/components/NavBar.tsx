@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 import AuthModal from './AuthModal';
 import { selectIsLoggedIn } from '../redux/authSlice';
+import UnderConstructionWarning from './UnderConstructionWarning';
 
 interface NavItem {
   label: string;
@@ -195,6 +196,7 @@ const NavBar = () => {
 
   return (
     <AppBar position="fixed">
+      <UnderConstructionWarning />
       {isTablet ? renderTabletNav() : renderMobileNav()}
       <AuthModal
         isOpen={isAuthModalOpen}

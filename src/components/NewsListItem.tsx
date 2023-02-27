@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { Delete } from '@mui/icons-material/';
 
-import { NewsArticle } from '../services/newsService';
+import { NewsArticle } from '../services/mokapiService';
 import placeHolderImg from '../assets/img/news-default-image.png';
 
 interface NewsListItemProps {

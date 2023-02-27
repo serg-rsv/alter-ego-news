@@ -1,7 +1,10 @@
 {
   "newsForAll": "News for everyone!",
   "interestingNews": "We gather the most interesting news from around the world and provide it to you in a convenient format.",
-  "wideRangeOfTopics": "Our news covers a wide range of topics, from politics to culture, science, and technology.",
-  "joinUs": "Join our site and be the first to learn about the most important events in the world!",
-  "latestTechNews": "Latest Technology News"
+  "latestTechNews": "Latest Technology News",
+  "login_warning": "WARNING!",
+  "login_warning_title": "Researchers have found that the most common username and password on the internet are 'admin' and '12345'.",
+  "data_leakage": "As research conducted by Stanford University shows, the majority of data leaks from online services are related to the use of such weak usernames and passwords. Attackers can easily guess these combinations and compromise a user's account.",
+  "protect_yourself": "To protect yourself from potential cyberattacks, experts recommend using more complex and unique usernames and passwords for each online account. For example, you can use combinations of letters, numbers, and special characters, as well as use phrases with meaning to create unique passwords.",
+  "avoid_obvious_combinations": "Never use such obvious combinations as 'admin' and '12345'. Remember that your personal data is your responsibility. Choose complex and unique usernames and passwords to protect your data online."
 }

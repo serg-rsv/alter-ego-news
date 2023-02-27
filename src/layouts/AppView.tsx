@@ -11,9 +11,9 @@ const AppView = () => {
       <Container
         maxWidth="lg"
         sx={{
+          pt: 6,
           display: 'flex',
           flexDirection: 'column',
-          // justifyContent: 'center',
           alignItems: 'center',
           minHeight: '100vh',
         }}
