@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+
 import FakeNews from '../components/FakeNews';
 
 const HomePage = () => {
@@ -9,7 +10,7 @@ const HomePage = () => {
     <Box
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
-      <Typography variant="h3" sx={{ my: 4 }}>
+      <Typography variant="h3" sx={{ mb: 4 }}>
         {t('content:newsForAll')}
       </Typography>
       <Typography variant="h6" sx={{ mb: 2 }}>

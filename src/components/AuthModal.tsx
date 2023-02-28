@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
   TextField,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -45,40 +46,47 @@ const AuthModal = ({ isOpen, onClose }: Props) => {
     }
   };
 
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleLoginClick();
+  };
+
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <DialogTitle>{t('common:login')}</DialogTitle>
       <DialogContent>
-        <DialogContentText>{t('common:enterCredential')}</DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="username"
-          label={t('common:username')}
-          type="text"
-          fullWidth
-          value={username}
-          onChange={handleUsernameChange}
-        />
-        <TextField
-          margin="dense"
-          id="password"
-          label={t('common:password')}
-          type="password"
-          fullWidth
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        {errorMessage && (
-          <DialogContentText sx={{ color: 'red' }}>
-            {errorMessage}
-          </DialogContentText>
-        )}
+        <FormControl component="form" onSubmit={handleFormSubmit}>
+          <DialogContentText>{t('common:enterCredential')}</DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="username"
+            label={t('common:username')}
+            type="text"
+            fullWidth
+            value={username}
+            onChange={handleUsernameChange}
+          />
+          <TextField
+            margin="dense"
+            id="password"
+            label={t('common:password')}
+            type="password"
+            fullWidth
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          {errorMessage && (
+            <DialogContentText sx={{ color: 'red' }}>
+              {errorMessage}
+            </DialogContentText>
+          )}
+          <DialogActions>
+            <Button onClick={onClose}>{t('common:cancel')}</Button>
+            <Button type="submit">{t('common:submit')}</Button>
+          </DialogActions>
+        </FormControl>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>{t('common:cancel')}</Button>
-        <Button onClick={handleLoginClick}>{t('common:submit')}</Button>
-      </DialogActions>
     </Dialog>
   );
 };

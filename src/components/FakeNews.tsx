@@ -22,12 +22,12 @@ const FakeNews = () => {
           justifyContent: 'space-between',
         }}
       >
+        <CardMedia
+          sx={{ height: 200, objectFit: 'cover', mb: 2 }}
+          image="https://techbldrs.com/wp-content/uploads/2017/11/passwords-460x250.jpg"
+          title="password"
+        />
         <CardContent>
-          <CardMedia
-            sx={{ height: 200, objectFit: 'cover', mb: 2 }}
-            image="https://techbldrs.com/wp-content/uploads/2017/11/passwords-460x250.jpg"
-            title="password"
-          />
           <Typography variant="h4" component="h1" gutterBottom>
             {t('login_warning_title')}
           </Typography>

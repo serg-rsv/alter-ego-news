@@ -17,7 +17,7 @@ const Footer = () => {
       <Typography variant="body2" color="textSecondary" align="center">
         © {new Date().getFullYear()} Serhii Rybak
         <IconButton
-          sx={{ marginRight: theme.spacing(1) }}
+          sx={{ mr: theme.spacing(1) }}
           aria-label="Linkedin"
           href="https://www.linkedin.com/"
           target="_blank"

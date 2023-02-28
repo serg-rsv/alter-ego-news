@@ -70,24 +70,6 @@ const ContactsCard = () => {
             </ListItem>
           ))}
         </List>
-
-        {/* <Box mt={2}>
-          <Link
-            sx={{
-              display: 'flex',
-              alignContent: 'center',
-              textDecoration: 'none',
-              '&:hover': {
-                color: theme.palette.primary.dark,
-              },
-            }}
-            href="mailto:rybaksw@gmail.com"
-            variant="body1"
-          >
-            <Email />
-            rybaksw@gmail.com
-          </Link>
-        </Box> */}
       </CardContent>
     </Card>
   );

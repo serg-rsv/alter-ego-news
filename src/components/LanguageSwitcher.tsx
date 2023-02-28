@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Box, Button, Menu, MenuItem } from '@mui/material';
 
 import { useAppDispatch } from '../redux/store';
 import { selectLanguage, setLanguage, Language } from '../redux/languageSlice';
@@ -24,7 +24,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <div>
+    <Box>
       <Button
         aria-controls="language-menu"
         aria-haspopup="true"
@@ -43,7 +43,7 @@ const LanguageSwitcher = () => {
         <MenuItem onClick={() => handleLanguageChange('en')}>EN</MenuItem>
         <MenuItem onClick={() => handleLanguageChange('uk')}>UK</MenuItem>
       </Menu>
-    </div>
+    </Box>
   );
 };
 

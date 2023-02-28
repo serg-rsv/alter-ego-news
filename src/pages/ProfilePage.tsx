@@ -19,7 +19,6 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../redux/store';
 import { logout } from '../redux/authSlice';
 
-// Avatar img
 import avatarImg from '../assets/img/avatar.png';
 import SkillsCard from '../components/profile/SkillsCard';
 import ContactsCard from '../components/profile/ContactsCrad';
@@ -54,10 +53,10 @@ const ProfilePage = () => {
               src={avatarImg}
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography variant="h4" gutterBottom>
+              <Typography variant="h4" component='h2' gutterBottom>
                 Serhii Rybak
               </Typography>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" component='h3' gutterBottom>
                 Front-end developer
               </Typography>
               <Typography variant="subtitle2" gutterBottom>

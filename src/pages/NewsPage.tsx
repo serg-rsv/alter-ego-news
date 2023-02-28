@@ -14,8 +14,8 @@ const NewsPage = () => {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [limit] = useState(8);
   const [hasMore, setHasMore] = useState(false);
+  const limit = 8;
 
   const handleLoadMore = () => {
     setPage(page + 1);

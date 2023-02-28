@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import i18n from '../i18n/i18n';
 import { RootState } from './store';
-import { SET_LANGUAGES,getInitialLanguage } from '../utils/getInitialLanguage';
+import { SET_LANGUAGES, getInitialLanguage } from '../utils/getInitialLanguage';
 
 export type Language = typeof SET_LANGUAGES[number];
 
@@ -20,7 +20,7 @@ const languageSlice = createSlice({
   reducers: {
     setLanguage(state, action: PayloadAction<Language>) {
       state.language = action.payload;
-      i18n.changeLanguage(action.payload); // set the language for i18n library
+      i18n.changeLanguage(action.payload);
       localStorage.setItem('language', action.payload);
     },
   },
