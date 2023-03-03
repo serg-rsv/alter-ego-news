@@ -28,12 +28,17 @@ const FakeNews = () => {
           title="password"
         />
         <CardContent>
-          <Typography variant="h4" component="h1" gutterBottom>
-            {t('login_warning_title')}
-          </Typography>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            dangerouslySetInnerHTML={{ __html: t('login_warning_title') }}
+          />
           <Alert severity="warning">
             <AlertTitle>{t('login_warning')}</AlertTitle>
-            <Typography>{t('login_warning_title')}</Typography>
+            <Typography
+              dangerouslySetInnerHTML={{ __html: t('login_warning_title') }}
+            />
           </Alert>
           <Typography sx={{ mt: 4 }}>{t('data_leakage')}</Typography>
           <Typography sx={{ mt: 2 }}>{t('protect_yourself')}</Typography>
