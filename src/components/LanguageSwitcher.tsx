@@ -36,7 +36,6 @@ const LanguageSwitcher = () => {
       <Menu
         id="language-menu"
         anchorEl={anchorEl}
-        keepMounted
         open={Boolean(anchorEl)}
         onClose={handleLanguageClose}
       >

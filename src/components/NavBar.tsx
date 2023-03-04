@@ -164,17 +164,18 @@ const NavBar = () => {
         <LanguageSwitcher />
       </Box>
       <Drawer
-        sx={{
-          [theme.breakpoints.up('md')]: {
-            flexShrink: 1,
-          },
-        }}
         variant="temporary"
         anchor="left"
         open={isDrawerOpen}
         onClose={handleDrawerToggle}
       >
-        <List>
+        <List
+          sx={{
+            minWidth: '50vw',
+            display: 'grid',
+            justifyContent: 'center',
+          }}
+        >
           {navItems.map((navItem) => {
             if (!navItem.private || isLoggedIn) {
               return (
